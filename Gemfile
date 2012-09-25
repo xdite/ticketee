@@ -14,6 +14,7 @@ gem 'jquery-rails', '~> 2.0.2'
 gem 'dynamic_form', '1.1.4'
 
 gem "devise"
+gem "email_spec", "1.2.1"
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.11'
