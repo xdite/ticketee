@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe ProjectsController do
   let(:project) { mock_model(Project, :id => 1) }
-  
-  let(:user) { Factory(:confirmed_user) }
+
+  let(:user) { FactoryGirl.create(:confirmed_user) }
 
   context "standard users" do
     before do

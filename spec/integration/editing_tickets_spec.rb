@@ -4,7 +4,7 @@ feature "Editing tickets" do
   let!(:user) { FactoryGirl.create(:confirmed_user) }
 
   let!(:ticket) do
-    ticket = Factory.create(:ticket, :project => project)
+    ticket = FactoryGirl.create(:ticket, :project => project)
     ticket.update_attribute(:user, user)
     ticket
   end
