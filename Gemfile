@@ -14,6 +14,7 @@ gem 'jquery-rails', '~> 2.0.2'
 group :test, :development do
   gem 'rspec-rails', '~> 2.11'
   gem "guard-spork"
+  gem "factory_girl"
 end
 
 group :test do
