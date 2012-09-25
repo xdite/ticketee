@@ -14,4 +14,11 @@ feature "Editing Projects" do
     click_button "Update Project"
     page.should have_content("Project has been updated.")
   end
+
+  scenario "Updating a project with invalid attributes is bad" do
+    fill_in "Name", :with => ""
+    click_button "Update Project"
+    page.should have_content("Project has not been updated.")
+  end
+  
 end
