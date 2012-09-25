@@ -1,6 +1,20 @@
 require 'spec_helper'
 
 describe ProjectsController do
+  let(:project) { mock_model(Project, :id => 1) }
+  
+  let(:user) { Factory(:confirmed_user) }
+
+  context "standard users" do
+    before do
+      sign_in(:user, user)
+    end
+    it "cannot access the new action" do
+      get :new
+      response.should redirect_to('/')
+      flash[:alert].should == "You must be an admin to do that."
+    end
+  end
 
   it "displays an error for a missing project" do
     get :show, :id => "not-here"

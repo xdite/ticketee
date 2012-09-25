@@ -23,6 +23,9 @@ Spork.prefork do
     config.before do
       ActionMailer::Base.deliveries.clear
     end
+
+    config.include Devise::TestHelpers, :type => :controller
+    
     # ## Mock Framework
     #
     # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
