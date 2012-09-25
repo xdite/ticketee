@@ -11,6 +11,8 @@ end
 
 gem 'jquery-rails', '~> 2.0.2'
 
+gem 'dynamic_form', '1.1.4'
+
 group :test, :development do
   gem 'rspec-rails', '~> 2.11'
   gem "guard-spork"
