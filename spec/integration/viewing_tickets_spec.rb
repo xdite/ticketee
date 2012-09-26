@@ -3,18 +3,21 @@ feature "Viewing tickets" do
   before do
 
     textmate_2 = FactoryGirl.create(:project, :name => "TextMate 2")
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:confirmed_user)
+
     ticket = FactoryGirl.create(:ticket,
-                       :project => textmate_2,
-                       :title => "Make it shiny!",
-                       :description => "Gradients! Starbursts! Oh my!")
+                                :project => textmate_2,
+                                :title => "Make it shiny!",
+                                :description => "Gradients! Starbursts! Oh my!")
     ticket.update_attribute(:user, user)
     internet_explorer = FactoryGirl.create(:project, :name => "Internet Explorer")
     FactoryGirl.create(:ticket,
                        :project => internet_explorer,
                        :title => "Standards compliance",
                        :description => "Isn't a joke.")
-
+    sign_in_as!(user)
+    define_permission!(user, "view", textmate_2)
+    define_permission!(user, "view", internet_explorer)
     visit '/'
   end
   scenario "Viewing tickets for a given project" do
@@ -28,5 +31,5 @@ feature "Viewing tickets" do
     end
     page.should have_content("Gradients! Starbursts! Oh my!")
   end
-  
+
 end
