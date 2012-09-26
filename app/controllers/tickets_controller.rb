@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
 
   before_filter :find_project
   before_filter :find_ticket, :only => [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!
 
   def new
     @ticket = @project.tickets.build
@@ -42,7 +42,11 @@ class TicketsController < ApplicationController
   private
 
   def find_project
-    @project = Project.find(params[:project_id])
+    @project = Project.for(current_user).find(params[:project_id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "The project you were looking " +
+      "for could not be found."
+    redirect_to root_path
   end
 
   def find_ticket
