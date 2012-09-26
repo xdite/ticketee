@@ -16,6 +16,8 @@ gem 'dynamic_form', '1.1.4'
 gem "devise"
 gem "email_spec", "1.2.1"
 
+gem "cancan"
+
 group :test, :development do
   gem 'rspec-rails', '~> 2.11'
   gem "guard-spork"
