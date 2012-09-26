@@ -14,4 +14,6 @@ class User < ActiveRecord::Base
   def to_s
     "#{email} (#{admin? ? "Admin" : "User"})"
   end
+
+
 end

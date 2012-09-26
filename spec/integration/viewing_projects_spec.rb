@@ -4,6 +4,7 @@ feature "Viewing projects" do
 
   let!(:user) { FactoryGirl.create(:confirmed_user) }
   let!(:project) { FactoryGirl.create(:project) }
+  let!(:project_2) { FactoryGirl.create(:project, :name => "Internet Explorer")}
 
   before do
     sign_in_as!(user)
@@ -11,9 +12,7 @@ feature "Viewing projects" do
   end
 
   scenario "Listing all projects" do
-    project = FactoryGirl.create(:project, :name => "TextMate 2")
     visit '/'
-    click_link 'TextMate 2'
-    page.current_url.should == project_url(project)
+    page.should_not have_content("Internet Explorer")
   end
 end
